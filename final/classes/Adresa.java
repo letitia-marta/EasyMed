@@ -1,4 +1,4 @@
-package easymed;
+package classes;
 
 /*
  * Aceasta clasa defineste un obiect de tipul adresa, cu caracteristicile sale:
