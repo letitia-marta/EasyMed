@@ -28,6 +28,8 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import clase.Consultatie;
 import clase.Data;
@@ -35,6 +37,13 @@ import clase.Pacient;
 
 public class Generare
 {
+	static JComboBox <String> pacientiOptiuni;
+	
+	public static void updateComboBox()
+    {
+        pacientiOptiuni.repaint();
+    }
+	
 	/**
      * Aceasta metoda defineste actiunea indeplinita de butonul "Generare consultatie", si anume
      * posibilitatea introducerii de date pentru a fi creeata o noua consultatie, implicit pe data curenta
@@ -50,23 +59,23 @@ public class Generare
      * @param fisierPacienti - fisierul in care sunt stocati pacientii
      * @param fisierConsultatii - fisierul in care sunt stocate consultatiile
      */
-    public static void generareAct (JMenuItem generareMenu, List <Pacient> pacienti, List <Pacient> afisare, List <Consultatie> registru, File fisierPacienti, File fisierConsultatii)
-    {
-    	generareMenu.addActionListener (new ActionListener()
+	public static void generareAct (JMenuItem generareMenu, List<Pacient> pacienti, List<Pacient> afisare, List<Consultatie> registru, File fisierPacienti, File fisierConsultatii)
+	{
+		generareMenu.addActionListener (new ActionListener()
         {
-        	@Override
+            @Override
             public void actionPerformed (ActionEvent e)
             {
-        		JFrame ecranGenerare = new JFrame("Generare consultatie");
-        		ecranGenerare.setSize(800, 600);
-        		ecranGenerare.setExtendedState(JFrame.MAXIMIZED_BOTH);
-                
-        		GridBagConstraints gbc = new GridBagConstraints();
-        		gbc.insets = new Insets(5, 5, 5, 5);
-        		JPanel panel = new JPanel(new GridBagLayout());
-        		
-        		ecranGenerare.setJMenuBar(GUI.meniu(GUI.mainFrame,pacienti,afisare,registru,fisierPacienti,fisierConsultatii));
-                
+                JFrame ecranGenerare = new JFrame("Generare consultatie");
+                ecranGenerare.setSize(800, 600);
+                ecranGenerare.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+                GridBagConstraints gbc = new GridBagConstraints();
+                gbc.insets = new Insets(5, 5, 5, 5);
+                JPanel panel = new JPanel(new GridBagLayout());
+
+                ecranGenerare.setJMenuBar(GUI.meniu(GUI.mainFrame, pacienti, afisare, registru, fisierPacienti, fisierConsultatii));
+
                 JLabel labelNume = new JLabel("Pacient: ");
                 JLabel labelZi = new JLabel("Zi: ");
                 JLabel labelLuna = new JLabel("Luna: ");
@@ -76,92 +85,146 @@ public class Generare
                 JLabel labelBT = new JLabel("BT: ");
                 JLabel labelBI = new JLabel("BI: ");
                 JLabel labelRp = new JLabel("R/p: ");
-                
-                JComboBox <String> pacientiOptiuni = new JComboBox <String> ();
-	            for (Pacient p: afisare)
-	            {
-	            	String numeComplet = p.getNume().toUpperCase() + " " + p.getPrenume().toUpperCase();
-	                pacientiOptiuni.addItem(numeComplet);
-	            }
-	            pacientiOptiuni.setEditable(false);
-	            
-	            SpinnerModel ziSpinnerModel = new SpinnerNumberModel(LocalDate.now().getDayOfMonth(), 1, 31, 1);
-	            JSpinner ziSpinner = new JSpinner(ziSpinnerModel);
 
-	            SpinnerModel lunaSpinnerModel = new SpinnerNumberModel(LocalDate.now().getMonthValue(), 1, 12, 1);
-	            JSpinner lunaSpinner = new JSpinner(lunaSpinnerModel);
+                // Searchable and paginated combo box
+                PaginatedComboBoxModel model = new PaginatedComboBoxModel(afisare);
+                pacientiOptiuni = new JComboBox<>(model);
+                pacientiOptiuni.setEditable(true);
 
-	            int anCurent = Year.now().getValue();
-	            SpinnerModel anSpinnerModel = new SpinnerNumberModel(anCurent, 1, anCurent, 1);
-	            JSpinner anSpinner = new JSpinner(anSpinnerModel);
-                
-	            JTextArea campSimptome = new JTextArea();
-	            campSimptome.setRows(8);
-	            campSimptome.setColumns(30);
-	            campSimptome.setPreferredSize(new Dimension(300, 200));
-	            campSimptome.setLineWrap(true);
-	            
+                JTextField searchField = (JTextField) pacientiOptiuni.getEditor().getEditorComponent();
+                searchField.getDocument().addDocumentListener (new DocumentListener()
+                {
+                    @Override
+                    public void insertUpdate (DocumentEvent e) 
+                    {
+                        model.filter(searchField.getText());
+                    }
+
+                    @Override
+                    public void removeUpdate (DocumentEvent e)
+                    {
+                        model.filter(searchField.getText());
+                    }
+
+                    @Override
+                    public void changedUpdate (DocumentEvent e)
+                    {
+                        model.filter(searchField.getText());
+                    }
+                });
+
+                // Pagination buttons
+                JPanel paginationPanel = new JPanel();
+                JButton previousButton = new JButton("Anterior");
+                JButton nextButton = new JButton("Urmator");
+                paginationPanel.add(previousButton);
+                paginationPanel.add(nextButton);
+
+                previousButton.addActionListener (new ActionListener()
+                {
+                    @Override
+                    public void actionPerformed (ActionEvent e)
+                    {
+                        if (model.hasPreviousPage())
+                        {
+                            model.previousPage();
+                            updateComboBox();
+                        }
+                    }
+                });
+
+                nextButton.addActionListener (new ActionListener()
+                {
+                    @Override
+                    public void actionPerformed (ActionEvent e)
+                    {
+                        if (model.hasNextPage())
+                        {
+                            model.nextPage();
+                            updateComboBox();
+                        }
+                    }
+                });
+
+                SpinnerModel ziSpinnerModel = new SpinnerNumberModel(LocalDate.now().getDayOfMonth(), 1, 31, 1);
+                JSpinner ziSpinner = new JSpinner(ziSpinnerModel);
+
+                SpinnerModel lunaSpinnerModel = new SpinnerNumberModel(LocalDate.now().getMonthValue(), 1, 12, 1);
+                JSpinner lunaSpinner = new JSpinner(lunaSpinnerModel);
+
+                int anCurent = Year.now().getValue();
+                SpinnerModel anSpinnerModel = new SpinnerNumberModel(anCurent, 1, anCurent, 1);
+                JSpinner anSpinner = new JSpinner(anSpinnerModel);
+
+                JTextArea campSimptome = new JTextArea();
+                campSimptome.setRows(8);
+                campSimptome.setColumns(30);
+                campSimptome.setPreferredSize(new Dimension(300, 200));
+                campSimptome.setLineWrap(true);
+
                 JTextField campDiagnostic = new JTextField();
                 JTextField campBT = new JTextField();
                 JTextField campBI = new JTextField();
                 JTextField campRp = new JTextField();
-                
+
                 JButton butonSalvare = new JButton("Adauga");
                 butonSalvare.addActionListener (new ActionListener()
                 {
                     @Override
                     public void actionPerformed (ActionEvent e)
                     {
-                    	String nume = (String) pacientiOptiuni.getSelectedItem();
-                        int zi = (int)ziSpinner.getValue();
-                        int luna = (int)lunaSpinner.getValue();
-                        int an = (int)anSpinner.getValue();
-                        
-                        List <String> simptome = new ArrayList <String> ();
+                        String nume = (String) pacientiOptiuni.getSelectedItem();
+                        int zi = (int) ziSpinner.getValue();
+                        int luna = (int) lunaSpinner.getValue();
+                        int an = (int) anSpinner.getValue();
+
+                        List<String> simptome = new ArrayList<>();
                         String[] randuri = campSimptome.getText().split("\n");
-                        for (String r: randuri)
-                        	simptome.add(r.trim());
-                        
+                        for (String r : randuri)
+                            simptome.add(r.trim());
+
                         String diag = campDiagnostic.getText();
                         String bt = campBT.getText();
                         String bi = campBI.getText();
                         String rp = campRp.getText();
-                        
+
                         Pacient pacient = new Pacient();
-                        for (Pacient p: pacienti)
-                        	if (p.toString().equals(nume))
-                        	{
-                        		pacient = p;
-                        		break;
-                        	}
-                        
-                    	Consultatie cons = new Consultatie(pacient,new Data(zi,luna,an),simptome,diag,bt,bi,rp);
-	                    registru.add(cons);
-	                    String path = "consultatii.txt";
-	        	        try
-	        	        {
-	        	            FileWriter fileWriter = new FileWriter(path, true);
-	        	            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-	        	            bufferedWriter.write("\n" + cons.toText());
-	        	            bufferedWriter.close();
-	        	        }
-	        	        catch (IOException ex)
-	        	        {
-	        	            System.out.println("A intervenit o eroare!");
-	        	        }
-	                    ecranGenerare.dispose();
+                        for (Pacient p : pacienti)
+                            if (p.toString().equals(nume))
+                            {
+                                pacient = p;
+                                break;
+                            }
+
+                        Consultatie cons = new Consultatie(pacient, new Data(zi, luna, an), simptome, diag, bt, bi, rp);
+                        registru.add(cons);
+                        String path = "consultatii.txt";
+                        try
+                        {
+                            FileWriter fileWriter = new FileWriter(path, true);
+                            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+                            bufferedWriter.write("\n" + cons.toText());
+                            bufferedWriter.close();
+                        }
+                        catch (IOException ex)
+                        {
+                            System.out.println("A intervenit o eroare!");
+                        }
+                        ecranGenerare.dispose();
                     }
                 });
-                
+
                 JPanel utilitar = new JPanel();
-                
+
                 gbc.gridx = 0;
                 gbc.gridy = 0;
                 panel.add(labelNume, gbc);
 
                 gbc.gridx = 1;
                 gbc.gridy = 0;
+                gbc.gridwidth = 3;
                 panel.add(pacientiOptiuni, gbc);
+                gbc.gridwidth = 1;
 
                 gbc.gridx = 0;
                 gbc.gridy = 1;
@@ -242,15 +305,19 @@ public class Generare
                 gbc.gridheight = 2;
                 panel.add(utilitar, gbc);
 
-                gbc.gridx = 0;
+                gbc.gridx = 1;
                 gbc.gridy = 23;
                 panel.add(butonSalvare, gbc);
-                
+
+                gbc.gridx = 1;
+                gbc.gridy = 24;
+                panel.add(paginationPanel, gbc);
+
                 ecranGenerare.add(panel);
-                
+
                 butonSalvare.setBackground(Color.CYAN);
                 butonSalvare.setForeground(Color.BLACK);
-                
+
                 ecranGenerare.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 ecranGenerare.setVisible(true);
             }
