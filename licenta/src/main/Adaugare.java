@@ -108,11 +108,9 @@ public class Adaugare
 	            SpinnerModel anSpinnerModel = new SpinnerNumberModel(currentYear, 1, currentYear, 1);
 	            JSpinner anSpinner = new JSpinner(anSpinnerModel);
 	
-	            String[] judete = {"Alba", "Arad", "Arges", "Bacau", "Bihor", "Bistrita-Nasaud", "Botosani", "Brasov",
-	                    "Braila", "Bucuresti", "Buzau", "Caras-Severin", "Calarasi", "Cluj", "Constanta", "Covasna",
-	                    "Dambovita", "Dolj", "Galati", "Giurgiu", "Gorj", "Harghita", "Hunedoara", "Ialomita", "Iasi",
-	                    "Ilfov", "Maramures", "Mehedinti", "Mures", "Neamt", "Olt", "Prahova", "Satu Mare", "Salaj",
-	                    "Sibiu", "Suceava", "Teleorman", "Timis", "Tulcea", "Vaslui", "Valcea", "Vrancea"};
+	            String[] judete = {"AB", "AR", "AG", "BC", "BH", "BN", "BT", "BV", "BR", "B", "BZ", "CS", "CL", "CJ", "CT", "CV",
+	                    "DB", "DJ", "GL", "GR", "GJ", "HR", "HD", "IL", "IS", "IF", "MM", "MH", "MS", "NT", "OT", "PH", "SM", "SJ",
+	                    "SB", "SV", "TR", "TM", "TL", "VS", "VL", "VR"};
 	            JComboBox <String> judetComboBox = new JComboBox<>(judete);
 	            judetComboBox.setEditable(false);
 	
@@ -297,4 +295,5 @@ public class Adaugare
 	        }
 	    });
 	}
+
 }
