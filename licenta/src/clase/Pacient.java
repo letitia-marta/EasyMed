@@ -1,5 +1,8 @@
 package clase;
 
+import java.time.LocalDate;
+import java.time.Year;
+
 /**
  * Aceasta clasa defineste un obiect de tipul pacient, cu caracteristicile sale:
  * nume si prenume, CNP, sex (M sau F), data nasterii si adresa domiciliului
@@ -20,6 +23,7 @@ public class Pacient
 	String CNP;
 	char sex; //F sau M
 	Data dataNasterii;
+	String varsta;
 	Adresa adresa;
 	
 	/**
@@ -31,6 +35,7 @@ public class Pacient
 		prenume = "";
 		CNP = "";
 		sex = ' ';
+		varsta = "";
 	}
 	
 	/**
@@ -49,7 +54,60 @@ public class Pacient
 		CNP = cnp;
 		sex = s;
 		dataNasterii = new Data (d.zi, d.luna, d.an);
+		varsta = computeVarsta(dataNasterii);
 		adresa = new Adresa (a.strada, a.nr, a.bloc, a.scara, a.etaj, a.apart, a.oras, a.judet);
+	}
+	
+	public String computeVarsta (Data dataNasterii)
+	{
+		int ziuaCurenta = LocalDate.now().getDayOfMonth();
+		int lunaCurenta = LocalDate.now().getMonthValue();
+		int anCurent = Year.now().getValue();
+		
+		int ziua = dataNasterii.getZi();
+		int luna = dataNasterii.getLuna();
+		int an = dataNasterii.getAn();
+		
+		int ani = 0, luni = 0;
+		String rez = "";
+		
+		if (anCurent - an == 0)
+		{
+			luni = lunaCurenta - luna;
+			if (ziuaCurenta < ziua)
+				luni --;
+			rez += luni + " luni";
+		}
+		else if (anCurent - an == 1)
+		{
+			if (lunaCurenta < luna)
+			{
+				luni = 12 - luna + lunaCurenta;
+				if (ziuaCurenta < ziua)
+					luni --;
+				rez += luni + " luni";
+			}
+			else if (lunaCurenta == luna)
+			{
+				if (ziuaCurenta >= ziua)
+					rez += "1 an";
+				else
+					rez += "11 luni";
+			}
+			else if (lunaCurenta > luna)
+				rez += "1 an";
+		}
+		else if (anCurent - an > 1)
+		{
+			ani = anCurent - an;
+			if (lunaCurenta < luna)
+				ani --;
+			else if (lunaCurenta == luna && ziuaCurenta < ziua)
+				ani --;
+			rez += ani + " ani";
+		}
+		
+		return rez;
 	}
 	
 	/**
@@ -95,6 +153,11 @@ public class Pacient
 	public Data getDataNasterii()
 	{
 		return dataNasterii;
+	}
+	
+	public String getVarsta()
+	{
+		return varsta;
 	}
 	
 	/**
@@ -151,6 +214,11 @@ public class Pacient
 		dataNasterii = d;
 	}
 	
+	public void setVarsta (String v)
+	{
+		varsta = v;
+	}
+	
 	/**
 	 * Aceasta metoda atribuie adresei o noua valoare
    	 * @param a - noua adresa
@@ -165,7 +233,7 @@ public class Pacient
 	 */
 	public void afisare()
 	{
-		System.out.println("NUME: " + nume + "\nPRENUME: " + prenume + "\nCNP: " + CNP + "\nSEX: " + sex + "\nDATA NASTERII: " + dataNasterii + "\nADRESA: " + adresa);
+		System.out.println("NUME: " + nume + "\nPRENUME: " + prenume + "\nCNP: " + CNP + "\nSEX: " + sex + "\nDATA NASTERII: " + dataNasterii + "\nVARSTA: " + varsta + "\nADRESA: " + adresa);
 	}
 	
 	/**
@@ -189,7 +257,7 @@ public class Pacient
 	 */
 	public String toText()
 	{
-		return nume + " " + prenume + " " + CNP + " " + sex + " " + dataNasterii + " " + adresa + "\n";
+		return nume + " " + prenume + " " + CNP + " " + sex + " " + dataNasterii + " " + varsta + " " + adresa + "\n";
 	}
 	
 	/**
