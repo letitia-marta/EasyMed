@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#13181D"
+    android:padding="12dp"
+    android:layout_marginBottom="4dp"
+    android:gravity="center_vertical">
+
+    <TextView
+        android:id="@+id/consultation_date"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.9"
+        android:textColor="@android:color/white"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/consultation_doctor"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:textColor="#5cf9c8"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/consultation_diagnosis"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:textColor="#cccccc"
+        android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/consultation_details_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.5"
+        android:text="Detalii"
+        android:backgroundTint="#5cf9c8"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:padding="8dp" />
+</LinearLayout> 

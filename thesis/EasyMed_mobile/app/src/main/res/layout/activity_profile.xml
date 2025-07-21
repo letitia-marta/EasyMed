@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2A363F">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Navigation Bar -->
+        <LinearLayout
+            android:id="@+id/navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#13181D"
+            android:padding="16dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/logo"
+                android:text="🏥"
+                android:textSize="30sp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/app_name"
+                android:text="EasyMed"
+                android:textColor="@android:color/white"
+                android:textSize="24sp"
+                android:paddingStart="16dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/profile_icon"
+                android:text="👤"
+                android:textSize="30sp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                android:clickable="true"
+                android:focusable="true"
+                />
+        </LinearLayout>
+
+        <!-- Back Button Row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/back_button"
+                android:text="← Înapoi la dashboard"
+                android:textColor="@android:color/white"
+                android:background="#13181D"
+                android:padding="12dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:foreground="?android:attr/selectableItemBackground" />
+
+            <Button
+                android:id="@+id/logout_button"
+                android:layout_width="164dp"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:text="Deconectare"
+                android:textColor="@android:color/white"
+                android:backgroundTint="#ff4444"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Profile Content -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="24dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="8dp"
+            app:cardBackgroundColor="#13181D">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="24dp">
+
+                <TextView
+                    android:text="Profilul meu"
+                    android:textColor="@android:color/white"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="24dp" />
+
+                <!-- Nume -->
+                <TextView android:text="Nume" android:textColor="#5cf9c8" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+                <EditText android:id="@+id/edit_nume" android:layout_width="match_parent" android:layout_height="wrap_content" android:background="#2A363F" android:textColor="@android:color/white" android:padding="12dp" android:textSize="16sp" android:layout_marginBottom="12dp" />
+
+                <!-- Prenume -->
+                <TextView android:text="Prenume" android:textColor="#5cf9c8" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+                <EditText android:id="@+id/edit_prenume" android:layout_width="match_parent" android:layout_height="wrap_content" android:background="#2A363F" android:textColor="@android:color/white" android:padding="12dp" android:textSize="16sp" android:layout_marginBottom="12dp" />
+
+                <!-- Email -->
+                <TextView android:text="Email" android:textColor="#5cf9c8" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+                <EditText android:id="@+id/edit_email" android:layout_width="match_parent" android:layout_height="wrap_content" android:background="#2A363F" android:textColor="@android:color/white" android:padding="12dp" android:textSize="16sp" android:inputType="textEmailAddress" android:layout_marginBottom="12dp" />
+
+                <!-- CNP (non-editable) -->
+                <TextView android:text="CNP" android:textColor="#5cf9c8" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+                <EditText android:id="@+id/edit_cnp" android:layout_width="match_parent" android:layout_height="wrap_content" android:background="#2A363F" android:textColor="#888" android:padding="12dp" android:textSize="16sp" android:enabled="false" android:layout_marginBottom="4dp" />
+                <TextView android:text="CNP-ul nu poate fi modificat" android:textColor="#888" android:textSize="12sp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="12dp" />
+
+                <!-- Sex (non-editable) -->
+                <TextView android:text="Sex" android:textColor="#5cf9c8" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+                <EditText android:id="@+id/edit_sex" android:layout_width="match_parent" android:layout_height="wrap_content" android:background="#2A363F" android:textColor="#888" android:padding="12dp" android:textSize="16sp" android:enabled="false" android:layout_marginBottom="4dp" />
+                <TextView android:text="Sexul nu poate fi modificat" android:textColor="#888" android:textSize="12sp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="12dp" />
+
+                <!-- Data nașterii (non-editable) -->
+                <TextView android:text="Data nașterii" android:textColor="#5cf9c8" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+                <EditText android:id="@+id/edit_data_nasterii" android:layout_width="match_parent" android:layout_height="wrap_content" android:background="#2A363F" android:textColor="#888" android:padding="12dp" android:textSize="16sp" android:enabled="false" android:layout_marginBottom="4dp" />
+                <TextView android:text="Data nașterii nu poate fi modificată" android:textColor="#888" android:textSize="12sp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="12dp" />
+
+                <!-- Vârstă (non-editable) -->
+                <TextView android:text="Vârstă" android:textColor="#5cf9c8" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+                <EditText android:id="@+id/edit_varsta" android:layout_width="match_parent" android:layout_height="wrap_content" android:background="#2A363F" android:textColor="#888" android:padding="12dp" android:textSize="16sp" android:enabled="false" android:layout_marginBottom="12dp" />
+
+
+                <!-- Adresă -->
+                <TextView android:text="Adresă" android:textColor="#5cf9c8" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+                <EditText android:id="@+id/edit_adresa" android:layout_width="match_parent" android:layout_height="wrap_content" android:background="#2A363F" android:textColor="@android:color/white" android:padding="12dp" android:textSize="16sp" android:layout_marginBottom="12dp" />
+
+                <!-- Grupa sanguină -->
+                <TextView android:text="Grupa sanguină" android:textColor="#5cf9c8" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+                <Spinner
+                    android:id="@+id/spinner_grupa_sanguina"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#2A363F"
+                    android:padding="12dp"
+                    android:layout_marginBottom="24dp" />
+
+                <!-- Edit Button -->
+                <Button
+                    android:id="@+id/btn_edit_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Editează profilul"
+                    android:textColor="#13181D"
+                    android:backgroundTint="#5cf9c8"
+                    android:padding="16dp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="12dp" />
+
+                <!-- Save Button (initially gone) -->
+                <Button
+                    android:id="@+id/btn_save_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Salvează modificările"
+                    android:textColor="#13181D"
+                    android:backgroundTint="#5cf9c8"
+                    android:padding="16dp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="8dp"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+</ScrollView> 
