@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    
+    <!-- EasyMed Theme Colors -->
+    <color name="easymed_primary">#2A363F</color>
+    <color name="easymed_secondary">#13181D</color>
+    <color name="easymed_accent">#5cf9c8</color>
+    <color name="easymed_card">#6A7C8B</color>
+    <color name="easymed_text_secondary">#cccccc</color>
+</resources>
