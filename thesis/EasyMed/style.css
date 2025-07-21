@@ -1,0 +1,336 @@
+html {
+    height: 100%;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+a {
+    color: inherit;
+}
+
+body {
+    font-family: "Source Code Pro", monospace;
+    margin: 0;
+    padding: 0;
+    color: whitesmoke;
+    background-color: #2A363F;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.navigation {
+    background: #13181d;
+    padding: 0rem 7rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+ul {
+    padding: 0;
+    list-style-type: none;
+}
+
+.navigation nav ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem
+}
+
+.navigation nav ul li a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.navigation nav ul li a:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1 1 0;
+    gap: 0
+}
+
+.content .left-content {
+    background: #13181d;
+    padding: 1rem;
+    flex: .1 1 0;
+}
+
+.content .right-content {
+    padding: 1rem;
+    flex: 1 1 0;
+}
+
+.right-content .wrapper {
+    width: 80%;
+    margin: 0 auto
+}
+
+.profile-link img {
+    border-radius: 50%;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.wrapper {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.hero {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: linear-gradient(45deg, rgba(0,0,0,.6), rgba(0,0,0,0)), url('images/HeroBg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    margin-left: calc(-50vw + 50%);
+}
+
+.hero-title {
+    font-size: 3rem;
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+.heroMedici {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: linear-gradient(45deg, rgba(0,0,0,.6), rgba(0,0,0,0)), url('images/HeroMedici.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    margin-left: calc(-50vw + 50%);
+}
+
+.heroMedici-title {
+    font-size: 3rem;
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+}
+
+.heroMedici-subtitle {
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+.heroPacienti {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: linear-gradient(45deg, rgba(0,0,0,.6), rgba(0,0,0,0)), url('images/HeroPacienti.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    margin-left: calc(-50vw + 50%);
+}
+
+.heroPacienti-title {
+    font-size: 3rem;
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+}
+
+.heroPacienti-subtitle {
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+.cards {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 2rem;
+    width: 100%;
+}
+
+.card {
+    background: rgba(42, 54, 63, 0.9);
+    border: 2px solid white;
+    border-radius: 10px;
+    padding: 2rem;
+    min-width: 250px;
+}
+
+.card-title {
+    margin: 0;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.section-divider {
+    display: block;
+    text-align: center;
+    margin: 1rem 0;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.section-title {
+    font-weight: bold;
+    font-size: 3rem;
+    margin: 0;
+}
+
+footer {
+    margin-top: 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media screen and (max-width: 1024px) {
+    .content {
+        flex-direction: column;
+    }
+    .content .left-content {
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 728px) {
+    .content .right-content .wrapper {
+        width: 95%;
+    }
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.login-form .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-form label {
+    font-weight: bold;
+}
+
+.login-form input {
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+}
+
+.login-form button {
+    padding: 0.75rem;
+    font-size: 1rem;
+    background-color: #5cf9c8;
+    color: black;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.login-helper a {
+    color: #5cf9c8;
+    text-decoration: none;
+}
+
+.card button {
+    padding: 0.75rem;
+    font-size: 1rem;
+    background-color: #5cf9c8;
+    color: black;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.menu-opened li a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.menu-opened li a:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+.profile-dropdown img {
+    cursor: pointer;
+}
+
+.profile-dropdown img:hover {
+    opacity: 1;
+}
+
+.dropdown-item {
+    text-decoration: none;
+    color: inherit;
+}
+
+.dropdown-item:hover {
+    text-decoration: none;
+    color: inherit;
+    background: none;
+}
+
+.sort-button {
+    cursor: pointer;
+}
+
+.sort-button:hover {
+    background: #13181d;
+    color: white;
+}
+
+.button {
+    cursor: pointer;
+}
+
+.button:hover {
+    background: #5cf9c8;
+    color: black;
+}
+
+.back-btn {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background: #2A363F;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    transition: background-color 0.3s;
+    font-weight: bold;
+    font-size: 1rem;
+}
+.back-btn:hover {
+    background: #3A4A5F;
+}
