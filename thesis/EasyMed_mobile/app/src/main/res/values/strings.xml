@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">EasyMed_mobile</string>
+
+    <string-array name="sex_options">
+        <item>Masculin</item>
+        <item>Feminin</item>
+    </string-array>
+</resources>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="DatePickerTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:colorPrimary">#3a9c7d</item> <!-- darker cyan -->
+        <item name="android:colorPrimaryDark">#13181d</item>
+        <item name="android:colorAccent">#4ac29c</item>
+        <item name="android:windowBackground">#13181d</item>
+        <item name="android:textColorPrimary">#ffffff</item>
+        <item name="android:textColorSecondary">#cccccc</item>
+        <item name="android:colorControlNormal">#5cf9c8</item>
+        <item name="android:colorControlActivated">#5cf9c8</item>
+        <item name="android:colorControlHighlight">#5cf9c8</item>
+    </style>
+</resources> 
