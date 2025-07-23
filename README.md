@@ -35,10 +35,7 @@ EasyMed aims to streamline communication and data management in healthcare by of
 - 👨‍👩‍👧 **Manage Family Accounts**  
   Link and manage health profiles of family members under a single account.
 
-----
-
 ## 🛠️ Tech Stack
-
 - **Frontend**: HTML, CSS, JavaScript, XML
 - **Backend**: PHP, Java
 - **Database**: MySQL
