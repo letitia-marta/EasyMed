@@ -30,10 +30,12 @@ EasyMed aims to streamline communication and data management in healthcare by of
   View full consultation history, prescriptions, and reports securely.
 
 - 📤 **Upload Medical Documents**  
-  Upload lab results, images, or referral documents for doctor access.
+  Upload lab results, images, or referral documents for doctor access.  
+  🔎 Includes an **automatic document classifier powered by OCR**, making it easier to organize and retrieve medical files.
 
-- 👨‍👩‍👧 **Manage Family Accounts**  
-  Link and manage health profiles of family members under a single account.
+- 👨‍👩‍👧 **Family Medical History**  
+  Link and manage health profiles of family members.  
+  🧠 Provides doctors with a more complete anamnesis and supports more accurate diagnoses. 
 
 ## 🛠️ Tech Stack
 - **Frontend**: HTML, CSS, JavaScript, XML
